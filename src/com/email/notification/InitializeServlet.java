@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 //This servelt is to initialize emails notification on container load
 //Checking for merge request for akshay
+//test
 
 public class InitializeServlet extends HttpServlet {
 
