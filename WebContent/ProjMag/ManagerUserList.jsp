@@ -3,7 +3,8 @@
 <%@page import="java.util.*"%>
  <%@ page import="com.login.util.DBConnection" %>
  <% 
-	try{      
+	try{   
+		// Added new List
 		 String s[]=null;
 		 Connection con = null;
 	        response.setContentType("text/html");
