@@ -148,8 +148,7 @@ function myFunction() {
 <tr><td style="width:100px"><b>Start Date:</b></td><td style="width:100px"><input type="text" name="startdate" id="startdate" placeholder="  mm/dd/yy" style="width:150px" required name="title";/>
  <td style="width:100px" ><b>End Date:</b></td><td style="width:100px"><input type="text" name="enddate" id="enddate" placeholder="  mm/dd/yy" style="width:150px" required name="title";"/></td>
  
-
-<td border="0" align="center"><span><input  type="submit" name="show" value="View" onclick="form.action='<%=request.getContextPath()%>/ViewUserTask2';"></span></td>
+<td border="0" align="center"><span><input  type="submit" name="show" value="View" onclick="form.action='<%=request.getContextPath()%>/ViewUserTask';"></span></td>
   
     </table><br><br>
     </form>

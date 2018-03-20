@@ -67,9 +67,9 @@ $("#name").autocomplete("UserList.jsp");
 		if (session != null) {
 			if (session.getAttribute("Admin") != null) {
 				String name = (String) session.getAttribute("Admin");
-				session.setAttribute("Admin",name +"   Admin");
+				session.setAttribute("Admin",name );
 
-				out.print("Welcome " + name );
+				out.print("Welcome " + name +"  Admin");
 			} else {
 				response.sendRedirect("/TimeSheet/");  			}
 		}

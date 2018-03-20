@@ -25,6 +25,7 @@ public class AdminDisplayTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static String mydate = null;
 	public int sum = 0;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,9 +34,7 @@ public class AdminDisplayTask extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }

@@ -1,6 +1,7 @@
 package com.login.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -9,12 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.Properties;
 
 import javax.mail.Message;
-
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,6 +56,7 @@ public class SendMailApproval extends HttpServlet {
 		
 
 		try {
+	         PrintWriter out = response.getWriter();
 
 			Connection con = null;
 			con = DBConnection.createConnection();
@@ -102,7 +104,15 @@ public class SendMailApproval extends HttpServlet {
 
 			sendMail(rs,employeeID,emailid,date,request);
 			
-			request.getRequestDispatcher("/Admin/AddTask.jsp").forward(request, response);
+request.getRequestDispatcher("/Admin/AddTask.jsp").forward(request, response);
+
+
+RequestDispatcher rd=request.getRequestDispatcher("/Admin/AddTask.jsp");
+rd.include(request, response);
+out.println("<h4 style='color:red;margin-left:400px;margin-top:20px;'>Sent Mail Approval Successfully...</h4>");
+
+
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

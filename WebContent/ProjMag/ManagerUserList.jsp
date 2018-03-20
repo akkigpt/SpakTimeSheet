@@ -48,7 +48,7 @@
 					}
 				}
 			//jQuery related end	
-		 
+		 System.out.println("Disconected..............!!!");
 			
  		rs.close(); 
  		st.close(); 

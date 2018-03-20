@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -16,84 +18,90 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.login.util.DBConnection;
 
-/**
- * Servlet implementation class ViewUserTask
- */
 @WebServlet("/ViewUserTask")
 public class ViewUserTask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+  
     public ViewUserTask() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-          try {
-        	Statement st=null;
-        	 Connection con = null;
-        	 con = DBConnection.createConnection();
-        	 System.out.println("connected!.....");
-        		String employeeID  = (String) request.getSession().getAttribute("User");
-        	 String EmployeeName = request.getParameter("EmpName");
-             String startDate = request.getParameter("startdate");
-             String endDate = request.getParameter("enddate");
-           
-             ArrayList al = null;
-             ArrayList pid_list = new ArrayList();
-            
-           String query = "SELECT taskId,EmployeeID,date,ProjName,proid,TaskCat,description,hours from task where EmployeeID='" + employeeID + "'";
-             if((startDate!=null && !startDate.equals(""))||(endDate!=null && !endDate.equals(""))){
-          
-             query = "SELECT taskId,EmployeeID,date,ProjName,proid,TaskCat,description,hours FROM task WHERE date BETWEEN " +"'" + startDate +"'" + " AND " + "'"+ endDate + "'" + " AND " 
-                   + "EmployeeID='" + employeeID +"'";
-             } 
-        /*  String query =  "SELECT taskId,EmployeeID,date,ProjName,proid,TaskCat,description,hours FROM task WHERE date BETWEEN " +"'" + startDate +"'" + " AND " + "'"+ endDate + "'" + " AND " 
-                  + "EmployeeID= (SELECT EmployeeID FROM users WHERE EmployeeName=\""+ EmployeeName +"\")";*/
-             System.out.println("query " + query);
-             st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
+	
+	 
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			response.setContentType("text/html");
+			
+	        PrintWriter out = response.getWriter();
+	          try {
+	        	Statement st=null;
+	        	 Connection con = null;
+	        	 con = DBConnection.createConnection();
+	        	 System.out.println("connected!.....");
+	       String employeeID  = (String) request.getSession().getAttribute("User");
+	        	 String EmployeeName = request.getParameter("EmpName");
+	             String startDate = request.getParameter("startdate");
+	             String endDate = request.getParameter("enddate");SimpleDateFormat fromUser = new SimpleDateFormat("MM/dd/yyyy");
+	     			SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+	     			String reformattedStr1 = null;
+	     			String reformattedStr2 = null;
 
-             while (rs.next()) {
-                 al = new ArrayList();
-                 al.add(rs.getString(1));
-                 al.add(rs.getString(2));
-                 al.add(rs.getString(3));
-                 al.add(rs.getString(4));
-                 al.add(rs.getString(5));
-                 al.add(rs.getString(6));
-                 al.add(rs.getString(7));
-                 al.add(rs.getString(8));
-                 System.out.println("al :: " + al);
-                 pid_list.add(al);
-             }
+	    			
+	    			
+					
+	    			try {
 
-             request.setAttribute("piList", pid_list);
-             System.out.println(pid_list);
-             
-             RequestDispatcher view = request.getRequestDispatcher("/JSP/viewevent.jsp");
-             view.forward(request, response);
-             con.close();
-             System.out.println("Disconnected!");
-           
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-	}
+	    			    reformattedStr1 = myFormat.format(fromUser.parse(startDate));
+	    			    reformattedStr2 = myFormat.format(fromUser.parse(endDate));
+	    			    
+	    			    
+	    			    System.out.println( reformattedStr1);
+	    			    System.out.println( reformattedStr2);
 
-}
+	    			} catch (ParseException e) {
+	    			    e.printStackTrace();
+	    			}
+	           
+	             ArrayList al = null;
+	             ArrayList pid_list = new ArrayList();
+	            
+	           String query = "SELECT taskId,EmployeeID,date,ProjName,proid,TaskCat,description,hours from task where EmployeeID='" + employeeID + "'";
+	             if((reformattedStr1!=null && !reformattedStr1.equals(""))||(reformattedStr2!=null && !reformattedStr2.equals(""))){
+	          
+	             query = "SELECT taskId,EmployeeID,date,ProjName,proid,TaskCat,description,hours FROM task WHERE date BETWEEN " +"'" + reformattedStr1 +"'" + " AND " + "'"+ reformattedStr2 + "'" + " AND " 
+	                   + "EmployeeID='" + employeeID +"'";
+	             } 
+	       
+	             System.out.println("query " + query);
+	             st = con.createStatement();
+	            ResultSet rs = st.executeQuery(query);
+
+	             while (rs.next()) {
+	                 al = new ArrayList();
+	                 al.add(rs.getString(1));
+	                 al.add(rs.getString(2));
+	                 al.add(rs.getString(3));
+	                 al.add(rs.getString(4));
+	                 al.add(rs.getString(5));
+	                 al.add(rs.getString(6));
+	                 al.add(rs.getString(7));
+	                 al.add(rs.getString(8));
+	                 System.out.println("al :: " + al);
+	                 pid_list.add(al);
+	             }
+
+	             request.setAttribute("piList", pid_list);
+	             System.out.println(pid_list);
+	             RequestDispatcher view = request.getRequestDispatcher("/JSP/viewevent.jsp");
+	             view.forward(request, response);
+	             con.close();
+	             System.out.println("Disconnected!");
+	               } catch (Exception e) {
+	             e.printStackTrace();
+	         }
+		}
+	}	
