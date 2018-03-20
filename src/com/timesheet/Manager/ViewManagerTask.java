@@ -58,7 +58,7 @@ public class ViewManagerTask extends HttpServlet {
              String endDate = request.getParameter("enddate");
            
              System.out.println("MySQL Connect Example.");
-             // Changes in date format
+             // Changes in date format............................;;;;;;;;;
       		
      		 SimpleDateFormat fromUser = new SimpleDateFormat("MM/dd/yyyy");
      			SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
