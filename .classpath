@@ -20,13 +20,5 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.0/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.0/lib/jsp-api.jar"/>
-	<classpathentry kind="lib" path="/devbridgeauto/WebContent/WEB-INF/lib/bonecp-0.8.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/devbridgeauto/WebContent/WEB-INF/lib/commons-io-2.2.jar"/>
-	<classpathentry kind="lib" path="/devbridgeauto/WebContent/WEB-INF/lib/commons-lang3-3.1.jar"/>
-	<classpathentry kind="lib" path="/devbridgeauto/WebContent/WEB-INF/lib/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="/devbridgeauto/WebContent/WEB-INF/lib/gson-2.2.2.jar"/>
-	<classpathentry kind="lib" path="/devbridgeauto/WebContent/WEB-INF/lib/guava-17.0.jar"/>
-	<classpathentry kind="lib" path="/devbridgeauto/WebContent/WEB-INF/lib/json-20090211.jar"/>
-	<classpathentry kind="lib" path="/devbridgeauto/WebContent/WEB-INF/lib/slf4j-api-1.7.7.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
