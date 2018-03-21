@@ -103,7 +103,7 @@ public class PasswordMail extends HttpServlet {
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse(to));
 
-			// Set Subject: header field
+			// Set Subject: header field Changed
 			message.setSubject("Password Reset Mail");
 			String baseUrl = null;
 			baseUrl =request.getScheme() + "://" +
