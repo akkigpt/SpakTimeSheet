@@ -270,10 +270,7 @@ function toggle(source) {
             return false;
         }
         
-        
-        
-        
-        return true;
+      return true;
     }
  function validate(form) {
 
@@ -315,6 +312,10 @@ function toggle(source) {
         else if(x=="null"){
         	
         	alert ('Please Select date and Display Record then click on Submit');
+            return false;
+        }
+        else if (x>24) {
+            alert("Total Hours should not be greater than 24");
             return false;
         }
            
@@ -391,14 +392,13 @@ function toggle(source) {
 </ul>
 </div>
             <div  style="  height: 100%; margin-top: 30px;">
-           <span  value='<%=AdminDisplayTask.mydate%>' style=" margin-left:5px;margin-top:80px;width:222px;fontfamily:Calibri;color:#007BC0;bordercolor:rgb(211,211,211)">Date:</span> <input type="text" id="startdate" name="date" required name="title"/>
+           <span  style=" margin-left:5px;margin-top:80px;width:222px;fontfamily:Calibri;color:#007BC0;bordercolor:rgb(211,211,211)">Date:</span> <input type="text" id="startdate"  value="<%=request.getAttribute("date")%>" name="date" required name="title"/>
            <span><input type="submit" value="Display" style="margin-left: 0%;width:80px;height:32px;background-color:#007BC0;color:white" onclick="form.action='<%=request.getContextPath()%>/AdminDisplayTask';" /></span> 
            
-           
+           <script>
  
                         <!-- date time piv -->
-                        <script type="text/javascript">
-                            $(document).ready(
+                        $(document).ready(
                                     function() {
                                         $("#startdate").datepicker({
                                             maxDate : "0",
@@ -406,14 +406,20 @@ function toggle(source) {
                                             changeYear : true,
                                             firstDay : 1,
                                             dateFormat : 'mm/dd/yy',
+                                            
                                         })
-                                        $("#startdate").datepicker({
-                                            dateFormat : 'mm/dd/yy'
-                                        });
-                                        var start = $('#startdate').datepicker(
-                                                'getDate');
+                                        var x = document.getElementById("startdate").value;
+                                      
+                                        if(x=="null"){
+                                        	
+                                        	$("#startdate").datepicker().datepicker("setDate", new Date());
+       	
+                                        }
+                                         
                                     });
+                        
                         </script>
+
                 <center>
                     <article>
                  

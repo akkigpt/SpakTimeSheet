@@ -413,6 +413,10 @@ function toggle(source) {
                                        return false;
                                    }
                                       
+                                   else if (x>24) {
+                                       alert("Total Hours should not be greater than 24");
+                                       return false;
+                                   }
                                       
                              
                                    return true;
